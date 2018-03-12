@@ -6,9 +6,13 @@ import numpy as np
 
 
 # Параметрами с которыми вы хотите обучать деревья
-TREE_PARAMS_DICT = {'max_depth': 1}
+TREE_PARAMS_DICT = {'max_depth':8,
+                    "min_samples_split":5,
+                    "min_samples_leaf":5,
+                    "max_features":5
+                   }
 # Параметр tau (learning_rate) для вашего GB
-TAU = 0.05
+TAU = 0.8666666666666667
 
 
 class SimpleGB(BaseEstimator):
@@ -23,14 +27,14 @@ class SimpleGB(BaseEstimator):
         curr_pred = self.base_algo.predict(X_data)
         for iter_num in range(self.iters):
             # Нужно посчитать градиент функции потерь
-            grad = 0. # TODO
+            grad =y_data/(1+np.exp(-y_data*curr_pred)) # TODO
             # Нужно обучить DecisionTreeRegressor предсказывать антиградиент
             # Не забудьте про self.tree_params_dict
-            algo = DecisionTreeRegressor(**self.tree_params_dict).fit(X_data, y_data) # TODO
+            algo = DecisionTreeRegressor(**self.tree_params_dict).fit(X_data, -grad) # TODO
 
             self.estimators.append(algo)
             # Обновите предсказания в каждой точке
-            curr_pred += 0. # TODO
+            curr_pred +=self.tau*algo.predict(X_data)
         return self
     
     def predict(self, X_data):
