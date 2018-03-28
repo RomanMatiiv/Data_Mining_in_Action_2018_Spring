@@ -1,6 +1,8 @@
 #coding=utf-8
 
 from sklearn.linear_model import LinearRegression  
+from xgboost import XGBRegressor
+from sklearn.ensemble import RandomForestRegressor
 from scipy.optimize import minimize
 import numpy as np
 
@@ -23,4 +25,5 @@ class Optimizer:
         return best_budget
 
     def fit(self, X_data, y_data):
-        self.model = LinearRegression().fit(X_data, y_data)
+#         self.model = LinearRegression().fit(X_data, y_data)
+        self.model =RandomForestRegressor().fit(X_data, y_data)

@@ -1,0 +1,16 @@
+{
+    "count_vectorizer_params": 
+    {
+        "lowercase": "word",
+        "ngram_range": [1, 2],
+        "min_df": 1,
+        "stop_words": "english"
+    }, 
+    "tfidf_transformer_params": {
+        "norm": "l2"    
+    }, 
+    "logistic_regression_params": {
+        "C": 0.1,
+        "penalty": "l2"
+    }
+}
