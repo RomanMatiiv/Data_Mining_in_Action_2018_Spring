@@ -1,6 +1,5 @@
 #coding=utf-8
-
-from sklearn.linear_model import LinearRegression  
+from sklearn.svm  import LinearSVR
 from scipy.optimize import minimize
 import numpy as np
 
@@ -23,5 +22,8 @@ class Optimizer:
         return best_budget
 
     def fit(self, X_data, y_data):
-        self.model = LinearRegression().fit(X_data, y_data)
-
+        self.model = LinearSVR(C=0.1,
+                               epsilon=1,
+                               tol=0.001,
+                               loss='squared_epsilon_insensitive')
+        self.model.fit(X_data, y_data)
