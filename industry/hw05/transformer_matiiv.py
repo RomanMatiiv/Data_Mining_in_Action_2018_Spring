@@ -3,11 +3,10 @@ import numpy as np
 from sklearn.base import TransformerMixin
 from collections import Counter
 
-from sklearn.neighbors import LocalOutlierFactor
 from sklearn.preprocessing import OneHotEncoder
 
 
-LR_PARAMS_DICT = {}
+LR_PARAMS_DICT = {'C': 6.4578947368421051, 'dual': False, 'fit_intercept': False, 'penalty': 'l1', 'solver': 'liblinear', 'tol': 1e-07, 'warm_start': False}
 
 
 class CustomTransformer(TransformerMixin):
